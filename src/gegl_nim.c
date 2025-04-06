@@ -1,0 +1,84 @@
+#include <gegl.h>
+
+void gegl_nim_init() {
+  gegl_init(NULL, NULL);
+}
+
+void gegl_nim_exit() {
+  gegl_exit();
+}
+
+GeglNode * gegl_nim_node_new() {
+  GeglNode *node = gegl_node_new();
+  return node;
+}
+
+void gegl_nim_node_unref(GeglNode* node) {
+  g_object_unref(node);
+}
+
+void gegl_nim_node_connect_to(GeglNode* n1, GeglNode* n2) {
+  gegl_node_connect_to(n1, "output", n2, "input");
+}
+
+void gegl_nim_node_process(GeglNode* node) {
+  gegl_node_process(node);
+}
+
+GeglNode * gegl_nim_node_png_load(GeglNode* node, char *s) {
+  GeglNode *child = gegl_node_new_child(node,
+    "operation", "gegl:png-load",
+    "path", s,
+    NULL);
+  return child;
+}
+
+GeglNode * gegl_nim_node_png_save(GeglNode* node, char *s) {
+  GeglNode *child = gegl_node_new_child(node,
+    "operation", "gegl:png-save",
+    "path", s,
+    NULL);
+  return child;
+}
+
+GeglNode * gegl_nim_node_gaussian_blur(GeglNode* node, double x, double y) {
+  GeglNode *child = gegl_node_new_child(node,
+    "operation", "gegl:gaussian-blur",
+    "std-dev-x", x,
+    "std-dev-y", y,
+    NULL);
+  return child;
+}
+
+GeglNode * gegl_nim_node_edge_sobel(GeglNode* node) {
+  GeglNode *child = gegl_node_new_child(node,
+    "operation", "gegl:edge-sobel",
+    NULL);
+  return child;
+}
+
+GeglNode * gegl_nim_node_brightness_contrast(GeglNode* node, double b, double c) {
+  GeglNode *child = gegl_node_new_child(node,
+    "operation", "gegl:brightness-contrast",
+    "brightness", b,
+    "contrast", c,
+    NULL);
+  return child;
+}
+
+GeglNode * gegl_nim_node_brightness(GeglNode* node, double b) {
+  GeglNode *child = gegl_node_new_child(node,
+    "operation", "gegl:brightness-contrast",
+    "brightness", b,
+    NULL);
+  return child;
+}
+
+GeglNode * gegl_nim_node_contrast(GeglNode* node, double c) {
+  GeglNode *child = gegl_node_new_child(node,
+    "operation", "gegl:brightness-contrast",
+    "contrast", c,
+    NULL);
+  return child;
+}
+
