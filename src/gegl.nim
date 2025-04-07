@@ -42,6 +42,14 @@ type
     overlay
     subtract
     exclusion
+    addition
+    divide
+    color_burn
+    color_dodge
+    hard_light
+    soft_light
+    src_atop
+    lighten
 
 proc gegl_nim_node_compose*(node: node, c: compositor): node {.importc, cdecl.}
 

@@ -119,6 +119,14 @@ GeglNode * gegl_nim_node_compose(GeglNode* node, int c) {
     case 3: compose_op = "gegl:overlay"; break;
     case 4: compose_op = "gegl:subtract"; break;
     case 5: compose_op = "gegl:exclusion"; break;
+    case 6: compose_op = "gegl:add"; break;
+    case 7: compose_op = "gegl:divide"; break;
+    case 8: compose_op = "gegl:color-burn"; break;
+    case 9: compose_op = "gegl:color-dodge"; break;
+    case 10: compose_op = "gegl:hard-light"; break;
+    case 11: compose_op = "gegl:soft-light"; break;
+    case 12: compose_op = "gegl:src-atop"; break;
+    case 13: compose_op = "gegl:lighten"; break;
     default: ;
   }
   GeglNode *child = gegl_node_new_child(node,
